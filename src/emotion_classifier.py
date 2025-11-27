@@ -1,5 +1,5 @@
-import pickle
 import logging
+import pickle
 from config import MODEL_PATH
 from mapping import load_label_mapping
 
@@ -23,5 +23,4 @@ class EmotionClassifier:
         label_id = int(prediction[0])
         emotion_name = self.mapping[label_id]
         return emotion_name
-    
-    
+

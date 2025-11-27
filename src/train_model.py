@@ -33,7 +33,7 @@ logging.info(f"Vectorised train shape: {X_train_vec.shape}")
 logging.info(f"Vectorised test shape: {X_test_vec.shape}")
 
 
-model = LogisticRegression(max_iter=300,solver='liblinear', class_weight="balanced", C=1.0)
+model = LogisticRegression(max_iter=300,solver='lbfgs', class_weight="balanced", C=1.0)
 model.fit(X_train_vec, y_train)
 y_pred = model.predict(X_test_vec)
 accuracy = accuracy_score(y_test, y_pred)
@@ -51,3 +51,8 @@ with open(MODEL_PATH, "wb") as f:
             "vectorizer": vectorizer,
             "model": model},f)
 logging.info(f"Model saved to {MODEL_PATH}")
+
+
+df = pd.read_csv("data/cleaned_dataset.csv")
+print(df["label"].unique())
+print(df[["label", "text"]].drop_duplicates())

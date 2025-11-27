@@ -1,6 +1,8 @@
 import pandas as pd
 import logging
-from config import TEXT_COL, LABEL_COL, HF_DATASET, DEFAULT_SPLIT, SPLITS, FILENAME_PATH
+from config import TEXT_COL, LABEL_COL, HF_DATASET, DEFAULT_SPLIT, SPLITS, CLEAN_DATA_PATH, LABEL_MAPPING_PATH, LABEL_MAPPING
+import json
+from mapping import fetch_label_mapping
 
 logging.basicConfig(
     level=logging.INFO,
@@ -14,7 +16,6 @@ def load_data(split=DEFAULT_SPLIT):
     file_path = f"hf://datasets/{HF_DATASET}/" + SPLITS[split]
     df = pd.read_parquet(file_path)
     logging.info("Dataset loaded successfully.")
-
     return df
 
 
@@ -29,17 +30,18 @@ def clean_data(df):
     return df
     
 
-def save_data(df, FILENAME_PATH):
-    df.to_csv(FILENAME_PATH, index=False)
-    logging.info(f"Cleaned data saved to {FILENAME_PATH}")
+def save_data(df, CLEAN_DATA_PATH):
+    df.to_csv(CLEAN_DATA_PATH, index=False)
+    logging.info(f"Cleaned data saved to {CLEAN_DATA_PATH}")
     
 
     
 
 if __name__ == "__main__":
+    fetch_label_mapping()
     df_raw = load_data(DEFAULT_SPLIT)
     df_clean = clean_data(df_raw)
-    save_data(df_clean, FILENAME_PATH)
+    save_data(df_clean, CLEAN_DATA_PATH)
 
 
 

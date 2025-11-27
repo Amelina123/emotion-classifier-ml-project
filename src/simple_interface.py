@@ -24,7 +24,7 @@ def main():
         if user_text in exit_conditions:
             print("Goodbye!")
             break
-        
+
         if not user_text:
             print("Please enter non-empty text.\n")
             continue
@@ -33,7 +33,6 @@ def main():
         prediction = classifier.classify(cleaned_text)
 
         print(f"Result: {prediction}\n")
-
 
 
 if __name__ == "__main__":
