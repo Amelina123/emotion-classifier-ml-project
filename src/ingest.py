@@ -1,6 +1,6 @@
 import pandas as pd
 import logging
-from src.config import TEXT_COL, LABEL_COL, HF_DATASET, DEFAULT_SPLIT, SPLITS, FILENAME_PATH
+from config import TEXT_COL, LABEL_COL, HF_DATASET, DEFAULT_SPLIT, SPLITS, FILENAME_PATH
 
 logging.basicConfig(
     level=logging.INFO,
@@ -38,7 +38,7 @@ def save_data(df, FILENAME_PATH):
 
 if __name__ == "__main__":
     df_raw = load_data(DEFAULT_SPLIT)
-    df_clean = clean_data(df)
+    df_clean = clean_data(df_raw)
     save_data(df_clean, FILENAME_PATH)
 
 

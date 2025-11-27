@@ -10,6 +10,8 @@ SPLITS = {
 }
 
 PATH_ROOT = Path(__file__).resolve().parent.parent
-FILENAME_PATH = PATH_ROOT / "data" / "cleaned_dataset.csv"
+FILENAME_PATH = PATH_ROOT/"data"/"cleaned_dataset.csv"
 TEXT_COL = "text"
 LABEL_COL = "label"
+
+MODEL_PATH = PATH_ROOT/"src"/"model.pkl"

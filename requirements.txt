@@ -2,3 +2,5 @@ datasets
 logging
 pandas
 pathlib
+scikit-learn
+numpy
