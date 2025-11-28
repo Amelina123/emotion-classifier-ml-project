@@ -1,0 +1,18 @@
+Sadness
+A negative emotional state triggered by perceived loss, helplessness, or unmet needs.
+Biologically, sadness decreases physiological arousal, promotes withdrawal, reflection, and signals a need for social support. It often follows loss, separation, or disappointment.
+Joy
+A positive emotional state associated with pleasure, reward, and well-being.
+It increases dopamine and endorphin activity, facilitates social bonding, motivates exploration, and reinforces behaviors that improve survival or connection.
+Love
+A complex emotional system integrating attachment, bonding, and caregiving responses.
+It involves oxytocin, dopamine, and long-term neural pathways that promote safety, trust, cooperation, and long-term affiliation with individuals or groups.
+Anger
+A high-arousal emotional response to perceived threat, injustice, or obstruction.
+It activates the sympathetic nervous system (increasing heart rate, muscle tension, adrenaline) and motivates confrontation, boundary protection, or problem-solving.
+Fear
+An intense emotional response to danger or threat (real or anticipated).
+It activates the amygdala and fight-flight-freeze mechanisms, preparing the body for rapid survival actions through increased arousal, vigilance, and risk assessment.
+Surprise
+A brief emotional reaction to unexpected events.
+It rapidly shifts attention, increases sensory intake, and prepares the body to evaluate novel stimuli. Surprise can transition into other emotions depending on context (fear, joy, curiosity).

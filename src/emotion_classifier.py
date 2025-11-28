@@ -1,7 +1,8 @@
 import logging
 import pickle
-from src.config import MODEL_PATH
+from src.config import MODEL_PATH, SENTENCE_MODEL_PATH
 from src.label_mapping import load_label_mapping
+from src.external_files import embed_knowledge
 
 class EmotionClassifier:
     def __init__(self, model_path=MODEL_PATH):
@@ -16,6 +17,15 @@ class EmotionClassifier:
 
         self.mapping = load_label_mapping()
         logging.info(f"Loaded label mapping: {self.mapping}")
+
+        with open(SENTENCE_MODEL_PATH, "rb") as f:
+            knowledge_data = pickle.load(f)
+        self.knowledge_embeddings = knowledge_data["embeddings"]
+        self.knowledge_chunks = knowledge_data["chunks"]
+        logging.info("Knowledge embeddings and chunks loaded.")
+    
+    
+    
     
     def classify(self, text: str):
         vec = self.vectorizer.transform([text])

@@ -8,3 +8,4 @@ pyarrow
 transformers
 accelerate
 torch
+sentence_transformers 
