@@ -1,46 +1,141 @@
-# emotion-classifier-ml-project
+# Emotion Classifier — Hybrid ML + Embedding + LLM System
 
-Using the dataset:
-https://huggingface.co/datasets/dair-ai/emotion
+This project uses the **dair-ai/emotion** dataset for educational purposes.  
+Dataset: https://huggingface.co/datasets/dair-ai/emotion
 
-## Dataset and Licensing
-
-This project uses the **dair-ai/emotion** dataset for educational and research purposes only.
-
-Dataset source:  
-https://huggingface.co/datasets/dair-ai/emotion
-
-### Citation
-If you use this dataset, please cite:
-
+### Citation  
 Saravia, E., Liu, H.-C. T., Huang, Y.-H., Wu, J., & Chen, Y.-S. (2018).  
-**CARER: Contextualized Affect Representations for Emotion Recognition**.  
-Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing,  
-pp. 3687–3697.  
+CARER: Contextualized Affect Representations for Emotion Recognition.  
+EMNLP 2018.  
 https://www.aclweb.org/anthology/D18-1404
 
-Classes included:
-- sadness  
-- joy
-- love
-- anger
-- fear
-- surprise
+---
 
-## Training the Model ('train_model.py')
+This project implements a three-stage emotion analysis pipeline that combines:
 
-This script trains an emotion classification model using TF-IDF vectorisation and Logistic Regression.
+1. A classical ML classifier for detecting emotions  
+2. A sentence-embedding retrieval module for scientific grounding  
+3. A controlled LLM (TinyLlama) for generating neutral, factual emotion explanations  
 
-### What the script does
-- Loads the cleaned dataset specified in 'config.py'
-- Splits data into training and test sets (80/20, stratified)
-- Converts text into numerical features using 'TfidfVectorizer'
-- Trains a Logistic Regression classifier with class balancing
-- Evaluates the model (accuracy, precision, recall, F1)
-- Logs a classification report and confusion matrix
-- Saves the trained model and vectorizer to 'model.pkl'
+The goal is to take a user sentence, detect the underlying emotion, retrieve a relevant scientific context snippet, and produce a clear, consistent explanation.
 
-### How to run
-```bash
-python src/train_model.py
+---
+
+## Project Structure
+
+```
+emotion-classifier-ml-project/
+│
+├── data/
+│   ├── cleaned_dataset.csv
+│   ├── label_mapping.json
+│
+├── knowledge/
+│   ├── emotion.txt
+│   ├── scientific_definitions.txt
+│
+├── logs/
+│   ├── chatbot.log
+│
+├── src/
+│   ├── chatbot_interface.py          # CLI interface
+│   ├── config.py                     # central configuration
+│   ├── emotion_classifier.py         # ML classifier + vectorizer + retrieval
+│   ├── sentence_model.py             # helper for loading files
+│   ├── ingest.py                     # dataset ingestion
+│   ├── label_mapping.py              # loads label mapping JSON
+│   ├── language_model.py             # TinyLlama interface
+│   ├── simple_interface.py           # input cleaning utilities
+│   ├── train_model.py                # training the ML classifier
+│   │
+│   ├── model.pkl                     # ML classification model (TF-IDF + classifier)
+│   ├── sentense_model.pkl            # embedding cache for retrieval
+│
+└── test/
+    └── pytest tests
+```
+
+---
+
+## Pipeline Overview
+
+The system operates in three distinct stages, each powered by one model.
+
+---
+
+### 1. Emotion Classification Model (model.pkl)
+
+A trained ML model built using:
+
+- TF-IDF vectorizer  
+- A multiclass classifier (e.g., Logistic Regression)  
+
+It predicts one of six categories:
+sadness, joy, love, anger, fear, surprise
+
+
+Implemented inside `emotion_classifier.py`.
+
+---
+
+### 2. Sentence Embedding Model (sentence_model.pkl)
+
+Powered by:
+
+sentence-transformers/all-MiniLM-L6-v2
+
+Used to:
+
+- Convert user text into embeddings  
+- Retrieve relevant scientific definitions from the `knowledge/` directory  
+- Provide factual grounding for the explanation  
+
+This creates a minimal Retrieval-Augmented Generation (Mini-RAG) step.
+
+---
+
+### 3. TinyLlama LLM  
+Model:
+
+TinyLlama/TinyLlama-1.1B-Chat-v1.0
+
+
+Purpose:
+
+- Generate the final scientific explanation  
+- Follow strict rules to avoid conversational tone  
+- Avoid addressing the user directly  
+- Avoid hallucinating stories or interpreting user meaning beyond classification  
+
+The LLM receives:
+
+- the detected emotion  
+- one retrieved scientific chunk  
+- strict formatting and style instructions  
+
+Its output is a clean, emotion-specific explanation.
+
+---
+
+## Running the Emotion Classifier (CLI)
+
+Start the application using:
+
+python -m src.chatbot_interface
+
+
+You will see:
+
+
+Enter a sentence:
+
+
+Example:
+
+
+Enter a sentence: I feel nervous before my exam
+
+Emotion detected: fear
+Explanation:
+Fear is a biological response associated with activation of the amygdala and stress-regulation circuits...
 

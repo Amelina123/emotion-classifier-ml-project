@@ -9,13 +9,14 @@ class Chatbot:
     model_name = LANGUAGE_MODEL_NAME
 
     def __init__(self):
-        
+        self.model_name = LANGUAGE_MODEL_NAME
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         print(f"Chatbot is using device: {self.device}")
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
         self.model = AutoModelForCausalLM.from_pretrained(self.model_name).to(self.device)
         self.history: list[tuple[str, str]] = []
-        self.system_prompt = "<|system|>\nYou are an emotion-aware helpful assistant.\n<|end|>\n"
+        self.system_prompt = ("<|system|>\n" "You are an emotion-aware assistant.\n")
+
         self.classifier = EmotionClassifier(MODEL_PATH)
         print(f"Model requested: {self.model_name}")
         print(f"Device used: {self.device}")
@@ -35,11 +36,9 @@ class Chatbot:
         return encoded
 
 
-    def generate_reply(self, prompt: str) -> str:
-        user_message = prompt.strip()
-        full_prompt = self.build_prompt(user_message)
-        
-        encoded = self.encode_prompt(full_prompt)
+    def generate_reply(self, text: str) -> str:
+        prompt = self.build_prompt(text)
+        encoded = self.encode_prompt(prompt)
      
         generated_output = self.model.generate(**encoded,
                                                    pad_token_id=self.tokenizer.eos_token_id,
@@ -51,23 +50,30 @@ class Chatbot:
         
         
         decoded = self.tokenizer.decode(generated_output[0], skip_special_tokens=False)
-        assistant_part = decoded.split("<|assistant|>")[-1]
-        reply = assistant_part.split("<|end|>")[0].strip()
+       
+        try:
+            assistant_text = decoded.split("<|assistant|>")[-1].split("<|end|>")[0].strip()
+        except:
+            assistant_text = decoded.strip()
+
+        return assistant_text
         
-        return reply
     
 
 
-    def classify_with_llm(self,new_user_message: str):
-        cleaned_massage = clean_input(new_user_message)
-        detected_emotion = self.classifier.classify(cleaned_massage)
+    def classify_with_llm(self,assistant_text: str):
+        cleaned_message = clean_input(assistant_text)
+        detected_emotion = self.classifier.classify(cleaned_message)
+        retrieved_chunks_knowledge = self.classifier.retrieve(cleaned_message, top_k=1)
+        context_chunk_knowledge = "\n".join(f" - {chunk}" for chunk in retrieved_chunks_knowledge)
         llm_instruction = (
-            f"User: \"{new_user_message}\"\n"
-            f"Detected emotion: {detected_emotion}\n"
-            "Explain the emotion in a friendly way.\n"
-            "Provide empathetic and support.\n"
-        )
-        
+                        f"{assistant_text}\n\n"
+                        f"The detected emotion is: {detected_emotion}.\n"
+                        f"{context_chunk_knowledge}\n\n"
+                        "Write an empathetic explanation of this emotion.\n"
+)
+
+       
         reply = self.generate_reply(llm_instruction)
-        self.history.append((new_user_message,reply))
+        self.history.append((assistant_text, reply))
         return detected_emotion, reply

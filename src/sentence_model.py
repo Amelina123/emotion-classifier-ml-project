@@ -10,13 +10,14 @@ logging.basicConfig(
     format="%(asctime)s — %(levelname)s — %(message)s"
 )
 
-logging.info("Loading embedding model...")
+
 embedding_model = SentenceTransformer(SENTENCE_MODEL_NAME)
 
 
 def load_files(path=KNOWLEDGE_PATH):
     logging.info(f"Loading files from: {path}")
     documents = []
+
     for filename in os.listdir(path):
         if filename.endswith(".txt"):
             file_path = os.path.join(path, filename)

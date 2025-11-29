@@ -1,5 +1,5 @@
 import pandas as pd
-from config import FILENAME_PATH, MODEL_PATH
+from src.config import CLEAN_DATA_PATH, MODEL_PATH
 import csv
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -13,7 +13,7 @@ import pickle
 logging.basicConfig(level=logging.INFO)
 
     
-df = pd.read_csv(FILENAME_PATH)
+df = pd.read_csv(CLEAN_DATA_PATH)
 X = df["text"]
 y = df["label"]
 X_train, X_test, y_train, y_test = train_test_split(

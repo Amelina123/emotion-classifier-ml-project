@@ -24,4 +24,4 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KNOWLEDGE_PATH = os.path.join(BASE_DIR, "knowledge")
 
 SENTENCE_MODEL_NAME ='all-MiniLM-L6-v2'
-SENTENCE_MODEL_PATH = PATH_ROOT/"src"/"sentense_model.pkl"
+SENTENCE_MODEL_PATH = PATH_ROOT/"src"/"sentence_model.pkl"

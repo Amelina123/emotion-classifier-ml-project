@@ -138,3 +138,50 @@ I understand that you might be feeling stressed, anxious or overwhelmed, and I w
 2025-11-27 16:35:37,304 - INFO - LLM response: Dear User,
 I'm glad to hear that you're surprised about the emotion that I detected for you. I understand that it might have been unexpected or uncomfortable for you, and I want to offer you some em
 2025-11-27 16:46:19,318 - INFO - User 'yana' exited the session
+2025-11-28 11:55:31,254 - INFO - Loading model from: /Users/yana/northcoders/ml_project/emotion-classifier-ml-project/src/model.pkl
+2025-11-28 11:55:31,384 - INFO - Model and vectorizer loaded successfully.
+2025-11-28 11:55:31,385 - INFO - Loaded label mapping: {0: 'sadness', 1: 'joy', 2: 'love', 3: 'anger', 4: 'fear', 5: 'surprise'}
+2025-11-28 11:57:06,493 - INFO - Loading model from: /Users/yana/northcoders/ml_project/emotion-classifier-ml-project/src/model.pkl
+2025-11-28 11:57:06,585 - INFO - Model and vectorizer loaded successfully.
+2025-11-28 11:57:06,586 - INFO - Loaded label mapping: {0: 'sadness', 1: 'joy', 2: 'love', 3: 'anger', 4: 'fear', 5: 'surprise'}
+2025-11-28 11:57:06,586 - INFO - Knowledge embeddings and chunks loaded.
+2025-11-28 11:57:06,670 - INFO - Use pytorch device_name: mps
+2025-11-28 11:57:06,670 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-28 11:57:08,556 - INFO - Sentence embedding model loaded.
+2025-11-28 11:57:14,789 - INFO - User 'Yana' logged in
+2025-11-28 11:57:39,642 - INFO - User input: I am very glad to speak with you
+2025-11-28 11:57:40,963 - ERROR - Error during classification: invalid index to scalar variable.
+2025-11-28 11:57:57,339 - INFO - User input: I am very glad to speak with you
+2025-11-28 11:57:57,393 - ERROR - Error during classification: invalid index to scalar variable.
+2025-11-28 11:58:05,119 - INFO - User input: I am happy
+2025-11-28 11:58:05,466 - ERROR - Error during classification: invalid index to scalar variable.
+2025-11-28 11:59:03,411 - INFO - User 'Yana' exited the session
+2025-11-28 12:04:37,584 - INFO - Loading model from: /Users/yana/northcoders/ml_project/emotion-classifier-ml-project/src/model.pkl
+2025-11-28 12:04:37,698 - INFO - Model and vectorizer loaded successfully.
+2025-11-28 12:04:37,699 - INFO - Loaded label mapping: {0: 'sadness', 1: 'joy', 2: 'love', 3: 'anger', 4: 'fear', 5: 'surprise'}
+2025-11-28 12:04:37,699 - INFO - Knowledge embeddings and chunks loaded.
+2025-11-28 12:04:37,710 - INFO - Use pytorch device_name: mps
+2025-11-28 12:04:37,710 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-28 12:04:39,536 - INFO - Sentence embedding model loaded.
+2025-11-28 12:04:42,644 - INFO - User 'yana' logged in
+2025-11-28 12:04:48,225 - INFO - User input: I am happy
+2025-11-28 12:04:48,387 - ERROR - Error during classification: invalid index to scalar variable.
+2025-11-28 12:06:41,488 - INFO - User 'yana' exited the session
+2025-11-28 12:06:52,853 - INFO - Loading model from: /Users/yana/northcoders/ml_project/emotion-classifier-ml-project/src/model.pkl
+2025-11-28 12:06:52,955 - INFO - Model and vectorizer loaded successfully.
+2025-11-28 12:06:52,955 - INFO - Loaded label mapping: {0: 'sadness', 1: 'joy', 2: 'love', 3: 'anger', 4: 'fear', 5: 'surprise'}
+2025-11-28 12:06:52,955 - INFO - Knowledge embeddings and chunks loaded.
+2025-11-28 12:06:52,971 - INFO - Use pytorch device_name: mps
+2025-11-28 12:06:52,971 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-28 12:06:55,027 - INFO - Sentence embedding model loaded.
+2025-11-28 12:06:59,504 - INFO - User 'yana' logged in
+2025-11-28 12:07:05,086 - INFO - User input: I am happy
+2025-11-28 12:11:01,397 - INFO - Loading model from: /Users/yana/northcoders/ml_project/emotion-classifier-ml-project/src/model.pkl
+2025-11-28 12:11:01,505 - INFO - Model and vectorizer loaded successfully.
+2025-11-28 12:11:01,505 - INFO - Loaded label mapping: {0: 'sadness', 1: 'joy', 2: 'love', 3: 'anger', 4: 'fear', 5: 'surprise'}
+2025-11-28 12:11:01,505 - INFO - Knowledge embeddings and chunks loaded.
+2025-11-28 12:11:01,517 - INFO - Use pytorch device_name: mps
+2025-11-28 12:11:01,517 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-11-28 12:11:03,571 - INFO - Sentence embedding model loaded.
+2025-11-28 12:11:07,776 - INFO - User 'Yana' logged in
+2025-11-28 12:11:13,214 - INFO - User input: I am happy
