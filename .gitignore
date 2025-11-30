@@ -8,6 +8,4 @@ __pycache__/
 .DS_Store
 
 # data files
-data/*.csv
-data/*.json
 .log
