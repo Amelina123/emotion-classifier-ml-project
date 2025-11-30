@@ -10,9 +10,10 @@ def fetch_label_mapping():
     ds = load_dataset(HF_DATASET, split="train")
     class_names = ds.features["label"].names 
     mapping = {i: name for i, name in enumerate(class_names)}
+    json_mapping = {str(k): v for k, v in mapping.items()}
 
     with open(LABEL_MAPPING_PATH, "w") as f:
-        json.dump(mapping, f, indent=2)
+        json.dump(json_mapping, f, indent=2)
 
     logging.info(f"Label mapping saved to {LABEL_MAPPING_PATH}: {mapping}")
     return mapping

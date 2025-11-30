@@ -1,6 +1,6 @@
 import pandas as pd
 import logging
-from config import TEXT_COL, LABEL_COL, HF_DATASET, DEFAULT_SPLIT, SPLITS, CLEAN_DATA_PATH, LABEL_MAPPING_PATH, LABEL_MAPPING
+from src.config import TEXT_COL, LABEL_COL, HF_DATASET, DEFAULT_SPLIT, SPLITS, CLEAN_DATA_PATH, LABEL_MAPPING_PATH, LABEL_MAPPING
 import json
 from src.label_mapping import fetch_label_mapping
 
