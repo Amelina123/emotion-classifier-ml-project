@@ -53,9 +53,21 @@ emotion-classifier-ml-project/
 │
 └── test/
     └── pytest tests
+├── .github/workflows/tests.yml           # CI workflow
+├── requirements.txt
+└── README.md
 ```
+## Installation
 
----
+Create and activate a virtual environment:
+
+python3 -m venv venv
+source venv/bin/activate
+
+Install all dependencies:
+
+pip install --upgrade pip
+pip install -r requirements.txt
 
 ## Pipeline Overview
 
@@ -139,3 +151,19 @@ Emotion detected: fear
 Explanation:
 Fear is a biological response associated with activation of the amygdala and stress-regulation circuits...
 
+## Automated Testing
+The project includes a complete pytest suite covering:
+classifier loading and predictions
+RAG semantic retrieval
+chatbot generation
+mapping correctness
+ingest and cleaning functions
+full pipeline integration test
+
+Run all tests locally:
+
+pytest -q
+
+## Continuous Integration (GitHub Actions)
+All tests run automatically on every push and pull request.
+Workflow: .github/workflows/tests.yml
